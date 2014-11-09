@@ -16,7 +16,7 @@ DATABASE = "mysql2://travis:*@127.0.0.1:3306/test"
 DB = Sequel.connect(DATABASE)
 
 task 'db:migrate' do 
-  Sequel.migrator.run(DATABASE, MIGRATION_PATH)
+  Sequel::Migrator.run(DATABASE, MIGRATION_PATH)
 end
 
 # namespace :db do 
