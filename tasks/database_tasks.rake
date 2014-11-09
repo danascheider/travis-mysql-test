@@ -11,6 +11,8 @@ DATABASE_INFO = {
   username: 'travis',
 }
 
+DB = Sequel.connect(DatabaseTaskHelper.connection(DATABASE_INFO, 'test'))
+
 namespace :db do 
   desc 'Create new migration, required arg NAME, default PATH /db/migrate'
   task :create_migration, [:NAME, :PATH] do |t, args|
@@ -34,5 +36,6 @@ EOF
   task 'test:prepare' do 
     client = Mysql2::Client.new(DATABASE_INFO)
     client.query('CREATE DATABASE test;')
+    Sequel::Migrator.run(DB, MIGRATION_PATH)
   end
 end
