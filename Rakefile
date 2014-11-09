@@ -6,6 +6,7 @@ Dir.glob('tasks/*.rake').each {|file| require file }
 RSpec::Core::RakeTask.new
 
 task 'suite:run' do 
+  Rake::Task['db:test:prepare'].invoke
   Rake::Task[:spec].invoke
 end
 
