@@ -11,7 +11,7 @@ db_info = {
   username: 'travis',
 }
 
-DATABASE = "mysql2://travis:*@127.0.0.1:3306/test"
+DATABASE = "mysql2://travis@127.0.0.1:3306/test"
 
 DB = Sequel.connect(DATABASE)
 
