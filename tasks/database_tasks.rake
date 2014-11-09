@@ -4,14 +4,16 @@ require 'sequel'
 Sequel.extension :migration
 
 MIGRATION_PATH = File.expand_path('db/migrate')
-DATABASE_INFO = {
+db_info = {
   adapter:  'mysql2',
   port:     3306,
   host:     '127.0.0.1',
   username: 'travis',
 }
 
-DB = Sequel.connect(DATABASE_INFO, 'test')
+DATABASE = "#{db_info[:adapter]}://#{db_info[:username]}:*@#{hash[:host]}:#{hash[:port]}/test"
+
+DB = Sequel.connect(DATABASE)
 
 namespace :db do 
   desc 'Create new migration, required arg NAME, default PATH /db/migrate'
