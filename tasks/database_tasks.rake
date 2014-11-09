@@ -36,7 +36,7 @@ EOF
 
   desc 'Set up test database'
   task 'test:prepare' do 
-    client = Mysql2::Client.new(DATABASE_INFO)
+    client = Mysql2::Client.new(db_info)
     client.query('CREATE DATABASE test;')
     Sequel::Migrator.run(DB, MIGRATION_PATH)
   end
