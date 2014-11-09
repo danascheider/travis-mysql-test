@@ -33,5 +33,6 @@ EOF
   desc 'Set up test database'
   task 'test:prepare' do 
     client = Mysql2::Client.new(DATABASE_INFO)
+    client.query('CREATE DATABASE test;')
   end
 end
