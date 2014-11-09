@@ -11,7 +11,7 @@ DATABASE_INFO = {
   username: 'travis',
 }
 
-DB = Sequel.connect(DatabaseTaskHelper.connection(DATABASE_INFO, 'test'))
+DB = Sequel.connect(DATABASE_INFO, 'test')
 
 namespace :db do 
   desc 'Create new migration, required arg NAME, default PATH /db/migrate'
