@@ -16,23 +16,23 @@ DATABASE = "mysql2://travis:*@127.0.0.1:3306/test"
 DB = Sequel.connect(DATABASE)
 
 namespace :db do 
-  desc 'Create new migration, required arg NAME, default PATH /db/migrate'
-  task :create_migration, [:NAME, :PATH] do |t, args|
-    path = args[:path] || MIGRATION_PATH
+#   desc 'Create new migration, required arg NAME, default PATH /db/migrate'
+#   task :create_migration, [:NAME, :PATH] do |t, args|
+#     path = args[:path] || MIGRATION_PATH
 
-    File.open((name="#{path}/#{Time.now.getutc.to_s.gsub(/\D/, '')}_#{args[:NAME]}.rb"), 'w+') do |file|
-      file.write <<-EOF
-Sequel.migration do 
-  up do
-  end
+#     File.open((name="#{path}/#{Time.now.getutc.to_s.gsub(/\D/, '')}_#{args[:NAME]}.rb"), 'w+') do |file|
+#       file.write <<-EOF
+# Sequel.migration do 
+#   up do
+#   end
 
-  down do 
-  end
-end
-EOF
-    end
-    puts "Migration created at #{path}/#{name}"
-  end
+#   down do 
+#   end
+# end
+# EOF
+#     end
+#     puts "Migration created at #{path}/#{name}"
+#   end
 
   namespace :test
     desc 'Migrate test database'
