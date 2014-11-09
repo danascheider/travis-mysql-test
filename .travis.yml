@@ -3,7 +3,6 @@ rvm:
 env:
   - DB=mysql
 before_install:
-  - sudo apt-get install libmysqlclient-dev 
   - mysql -e 'create database test;' -u travis
 notifications:
   - email: false
