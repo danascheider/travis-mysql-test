@@ -34,10 +34,17 @@ EOF
     puts "Migration created at #{path}/#{name}"
   end
 
-  desc 'Set up test database'
-  task 'test:prepare' do 
-    client = Mysql2::Client.new(db_info)
-    client.query('CREATE DATABASE test;')
-    Sequel::Migrator.run(DB, MIGRATION_PATH)
+  namespace :test
+    desc 'Migrate test database'
+    task :migrate do 
+      Sequel::Migrator.run(DB, MIGRATION_PATH)
+    end
+
+    desc 'Set up test database'
+    task :prepare do 
+      client = Mysql2::Client.new(db_info)
+      client.query('CREATE DATABASE test;')
+      Sequel::Migrator.run(DB, MIGRATION_PATH)
+    end
   end
 end
