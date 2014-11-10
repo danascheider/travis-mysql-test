@@ -7,7 +7,15 @@ class TestApp < Sinatra::Base
 
   DB = Sequel.connect(database)
 
+  before do
+    @request_body = JSON.parse(request.body.read) rescue nil
+  end
+
   get '/index' do
     'Hello world'
+  end
+
+  post '/index' do 
+    @request_body.to_json
   end
 end
